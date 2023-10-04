@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>assignment 5</title>
+</head>
+<body>
+
+    <div id="mydiv"></div>
+    <script>
+        var mystr="Basically each flower consist of a floral axis upon which are borne the essential organs of reproduction and usually accessoy contents the later may serve to attract both pollinating insect and product the essential the organs.the sepals and petals makeup of the perianth,or floral envelop."
+         mystr = mystr.replace(/[.,""\/#!$%\^&\*-;:{}()]/g,"").toLowerCase();
+        var words=mystr.split(" ");
+        let s={};
+        var myobj=[];
+        var ele=""
+
+        words.forEach(function(item){
+            if(s[item]){
+                s[item]++
+            }
+            else{
+                s[item]=1
+            }
+        });
+
+        for(let key in s){
+            myobj.push({[key]:s[key]});
+        }
+        
+        myobj.sort((a,b)=>{
+            let valueA=Object.values(a);
+            let valueB=Object.values(b);
+            return valueB-valueA;
+           
+        });
+
+        let topthree=myobj.slice(0,3)
+        console.log(topthree)
+
+    
+
+        topthree.forEach(item=>{
+            for(let key in item){
+                ele=ele+"<h1>"+`${key}:${item[key]}`+"</h1>";
+            }
+        })
+        
+        document.getElementById("mydiv").innerHTML=ele
+
+    </script>
+</body>
+</html>
